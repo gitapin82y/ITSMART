@@ -12,9 +12,86 @@
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
     <style>
+          .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .scroll-hint {
+      position: absolute;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .scroll-hint .arrow-icon {
+      font-size: 20px;
+      color: #7ea9ff;
+      animation: arrowMove 1s infinite alternate;
+    }
+
+    .smalltext{
+      font-size: 14px !important;
+    }
+
+    .table-container:hover .scroll-hint {
+      opacity: 1;
+    }
+
+    @keyframes arrowMove {
+      from {
+        transform: translateX(0);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(10px);
+        opacity: 1;
+      }
+    }
+
+    table {
+      min-width: 100%; /* Ensure table takes full width of container */
+      white-space: nowrap; /* Prevent text wrapping */
+    }
+
+    th, td {
+      padding: 10px; /* Adjust padding as needed */
+    }
+
       .numbers .card-title{
         font-size: 18px !important;
       }
+      .btn-success{
+        border-radius: 50px !important;
+        box-shadow: 0 2px 10px rgba(49, 206, 54,0.5);
+      }
+
+      .btn-view{
+        border-radius: 50px !important;
+        box-shadow: 0 2px 10px rgba(97, 155, 255, 0.5);
+        color: white !important;
+      }
+
+      .btn-warning{
+        border-radius: 50px !important;
+        box-shadow: 0 2px 10px rgba(255, 173, 70,0.5);
+        color: white !important;
+      }
+
+      .btn-danger{
+        border-radius: 50px !important;
+        box-shadow: 0 2px 10px rgba(242, 89, 97, 0.4);
+      }
+      thead th{
+        color: rgb(69, 63, 155) !important;
+        font-weight: bold;
+      }
+      table{
+        border: 1px solid rgb(144, 144, 144);
+        border-radius: 10px;
+      }
+  
     </style>
     <script>
       WebFont.load({
@@ -79,13 +156,13 @@
                 </span>
               </li>
               <!-- New Menu Items -->
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a href="dashboard.html">
                   <i class="fas fa-home"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a href="freshgraduate.html">
                   <i class="fas fa-graduation-cap"></i>
                   <p>Freshgraduate</p>
@@ -122,27 +199,6 @@
                   <p>Informasi</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#dropdown">
-                  <i class="fas fa-layer-group"></i>
-                  <p>Dropdown</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="dropdown">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="#1">
-                        <span class="sub-item">Menu 1</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#2">
-                        <span class="sub-item">Menu 2</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li> -->
             </ul>
           </div>
         </div>
@@ -228,6 +284,10 @@
                         class="avatar-img rounded-circle"
                       />
                     </div>
+                    <!-- <span class="profile-username">
+                      <span class="op-7">Hi,</span>
+                      <span class="fw-bold">Mochamad Rizki</span>
+                    </span> -->
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
                     <div class="dropdown-user-scroll scrollbar-outer">
@@ -268,51 +328,216 @@
 
         <div class="container">
           <div class="page-inner">
-
-            <div class="row">
-              <div class="col-8">
-                <h3 class="fw-bold mb-3">Hi, Mochamad Rizki</h3>
-              </div>
-              <div class="col-4">
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="card-title">Grafik Karyawan Pertahun</div>
+            <!-- table -->
+            <div class="col-md-12">
+              <div class="card card-round">
+                <div class="card-header">
+                  <div class="card-head-row card-tools-still-right">
+                    <div class="card-title">List Rekrutmen Freshgraduate</div>
+                    <div class="card-tools">
+                      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class="me-1 fas fa-plus-circle"></i>Tambah Data</button>
                     </div>
-                    <div class="card-body p-0">
-                      <div class="chart-container">
-                        <canvas id="multipleLineChart"></canvas>
-                      </div>
-                    </div>
+                  </div>
                 </div>
-
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="card-title">Grafik Bantuan Pertahun</div>
-                    </div>
-                    <div class="card-body p-0">
-                      <div class="chart-container">
-                        <canvas id="bantuanPerumahan"></canvas>
+                <div class="card-body p-2 pt-4">
+                  <div class="table-responsive table-container">
+                    <!-- Projects table -->
+                    <table id="tableKaryawan" class="table table-bordered">
+                        <thead>
+                          <tr> 
+                            <th>ID</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Posisi</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Data karyawan akan dimuat di sini -->
+                        </tbody>
+                      </table>
+                      <div class="scroll-hint">
+                        <small class="arrow-icon smalltext">Scroll</small>
+                        <i class="arrow-icon fas fa-chevron-right"></i>
+                        <i class="arrow-icon fas fa-chevron-right"></i>
                       </div>
-                    </div>
+                  </div>
                 </div>
-                  
               </div>
             </div>
-            <!-- table -->
-
-         
-
           </div>
         </div>
       </div>
 
     </div>
+
+
+
+  <!-- Modal Tambah/Edit -->
+  <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="modalTambahLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTambahLabel">Tambah Data Freshgraduate</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formKaryawan">
+            <div class="mb-3">
+              <label for="nama" class="form-label">Nama</label>
+              <input type="text" class="form-control" id="nama" name="nama" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="text" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="posisi" class="form-label">Posisi</label>
+              <input type="text" class="form-control" id="posisi" name="posisi" required>
+            </div>
+            <div class="mb-3">
+              <label for="status" class="form-label">Status</label>
+              <select class="form-select" id="status" name="status" required>
+                <option value="">Pilih status...</option>
+                <option value="Seleksi">Seleksi</option>
+                <option value="Pelatihan">Pelatihan</option>
+                <option value="Orientasi">Orientasi</option>
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
    <!--   Core JS Files   -->
    <script src="assets/js/core/jquery-3.7.1.min.js"></script>
    <script src="assets/js/core/popper.min.js"></script>
    <script src="assets/js/core/bootstrap.min.js"></script>
+
+   <script>
+    // Data JSON karyawan (dummy data)
+    let dataKaryawan = [
+    { id: 1, nama: "Desi Septiawan", posisi: "Manager", email: "agus.setiawan@gmail.com", status: "Seleksi" },
+    { id: 2, nama: "Bagus Surya", posisi: "Staff", email: "budi.santoso@gmail.com", status: "Pelatihan" },
+    { id: 3, nama: "Dafa Darma", posisi: "Programmer", email: "citra.wijaya@gmail.com", status: "Orientasi" },
+  ];
+
+
+    // Function to set modal title and form action based on mode (add/edit)
+  function setModalMode(mode) {
+    const modalTitle = document.getElementById('modalTambahLabel');
+    const modalForm = document.getElementById('formKaryawan');
+    const modalSubmitBtn = modalForm.querySelector('button[type="submit"]');
+
+    if (mode === 'add') {
+      modalTitle.textContent = 'Tambah Freshgraduate';
+      modalSubmitBtn.textContent = 'Simpan';
+      modalForm.removeAttribute('data-id'); // Clear the data-id attribute
+      let nama = $('#nama').val();
+      let email = $('#email').val();
+      let posisi = $('#posisi').val();
+      let status = $('#status').val();
+    } else if (mode === 'edit') {
+      modalTitle.textContent = 'Edit Freshgraduate';
+      modalSubmitBtn.textContent = 'Update';
+    }
+  }
+
+  // Event listener for modal shown event (Bootstrap 5)
+  $('#modalTambah').on('show.bs.modal', function(event) {
+    const button = $(event.relatedTarget); // Button that triggered the modal
+    if (button.hasClass('btn-success')) {
+      setModalMode('add');
+    } else if (button.hasClass('btn-warning')) {
+      setModalMode('edit');
+    }
+  });
+
+
+    // Menampilkan data karyawan ke dalam tabel menggunakan DataTables
+    $(document).ready(function() {
+      $('#tableKaryawan').DataTable({
+        data: dataKaryawan,
+        columns: [
+          { data: 'id' },
+          { data: 'nama' },
+          { data: 'email' },
+          { 
+            data: 'posisi',
+          },
+          { data: 'status'},
+          {
+            data: null,
+            render: function(data, type, row) {
+              return  '<a href="https://www.cvmaker.co.id/storage/Contoh-cv-lulusan-s1-posisi-hr-dengan-foto-800.jpeg" target="_blank" class="btn btn-sm btn-primary btn-view me-2"><i class="me-1 fas fa-file-alt"></i>Lihat CV</a>' +
+                      '<button class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modalTambah" onclick="editKaryawan(' + row.id + ')"><i class="me-1 fas fa-edit"></i>Edit</button>' +
+                     '<button class="btn btn-sm btn-danger" onclick="hapusKaryawan(' + row.id + ')"><i class="me-1 fas fa-trash-alt"></i>Hapus</button>';
+            }
+          }
+        ],
+      });
+    });
+
+
+    // Fungsi untuk menambah atau mengedit karyawan
+    $('#formKaryawan').submit(function(event) {
+      event.preventDefault();
+      let id = parseInt($('#modalTambah').attr('data-id'));
+      let nama = $('#nama').val();
+      let email = $('#email').val();
+      let posisi = $('#posisi').val();
+      let status = $('#status').val();
+      if (id) {
+        // Edit karyawan
+        let index = dataKaryawan.findIndex(k => k.id === id);
+        dataKaryawan[index].nama = nama;
+        dataKaryawan[index].email = email;
+        dataKaryawan[index].posisi = posisi;
+        dataKaryawan[index].status = status;
+      } else {
+        // Tambah karyawan (ID baru)
+        let newId = dataKaryawan.length + 1;
+        dataKaryawan.push({ id: newId, nama: nama, email: email, posisi: posisi });
+      }
+      $('#modalTambah').modal('hide');
+      refreshTable();
+    });
+
+    // Fungsi untuk menghapus karyawan
+    function hapusKaryawan(id) {
+        console.log(id);
+    if (confirm('Apakah Anda yakin ingin menghapus data freshgraduate ini?')) {
+        dataKaryawan = dataKaryawan.filter(karyawan => karyawan.id !== id);
+        refreshTable();
+    }
+    }
+
+    // Fungsi untuk mengedit karyawan
+    function editKaryawan(id) {
+      let karyawan = dataKaryawan.find(k => k.id === id);
+      $('#modalTambah').attr('data-id', id);
+      $('#nama').val(karyawan.nama);
+      $('#email').val(karyawan.email);
+      $('#posisi').val(karyawan.posisi);
+      $('#status').val(karyawan.status);
+    }
+
+    // Fungsi untuk menyegarkan tabel
+    function refreshTable() {
+      $('#tableKaryawan').DataTable().clear().rows.add(dataKaryawan).draw();
+    }
+
+  </script>
 
    <!-- jQuery Scrollbar -->
    <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
@@ -345,158 +570,5 @@
    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
    <script src="assets/js/setting-demo.js"></script>
    <script src="assets/js/demo.js"></script>
-   <script>
-     $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-       type: "line",
-       height: "70",
-       width: "100%",
-       lineWidth: "2",
-       lineColor: "#177dff",
-       fillColor: "rgba(23, 125, 255, 0.14)",
-     });
-
-     $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-       type: "line",
-       height: "70",
-       width: "100%",
-       lineWidth: "2",
-       lineColor: "#f3545d",
-       fillColor: "rgba(243, 84, 93, .14)",
-     });
-
-     $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-       type: "line",
-       height: "70",
-       width: "100%",
-       lineWidth: "2",
-       lineColor: "#ffa534",
-       fillColor: "rgba(255, 165, 52, .14)",
-     });
-
-     var myMultipleLineChart = new Chart(multipleLineChart, {
-        type: "line",
-        data: {
-          labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          datasets: [
-            {
-              label: "Freshgradutate",
-              borderColor: "#1d7af3",
-              pointBorderColor: "#FFF",
-              pointBackgroundColor: "#1d7af3",
-              pointBorderWidth: 2,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 1,
-              pointRadius: 4,
-              backgroundColor: "transparent",
-              fill: true,
-              borderWidth: 2,
-              data: [30, 45, 45, 68, 69, 90, 100, 158, 177, 200, 245, 256],
-            },
-            {
-              label: "Karyawan Tetap",
-              borderColor: "#59d05d",
-              pointBorderColor: "#FFF",
-              pointBackgroundColor: "#59d05d",
-              pointBorderWidth: 2,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 1,
-              pointRadius: 4,
-              backgroundColor: "transparent",
-              fill: true,
-              borderWidth: 2,
-              data: [10, 20, 55, 75, 80, 48, 59, 55, 23, 107, 60, 87],
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          legend: {
-            position: "top",
-          },
-          tooltips: {
-            bodySpacing: 4,
-            mode: "nearest",
-            intersect: 0,
-            position: "nearest",
-            xPadding: 10,
-            yPadding: 10,
-            caretPadding: 10,
-          },
-          layout: {
-            padding: { left: 15, right: 15, top: 15, bottom: 15 },
-          },
-        },
-      });
-
-      var myBantuanPerumahan = new Chart(bantuanPerumahan, {
-        type: "line",
-        data: {
-          labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          datasets: [
-            {
-              label: "Bantuan disalurkan",
-              borderColor: "#59d05d",
-              pointBorderColor: "#FFF",
-              pointBackgroundColor: "#59d05d",
-              pointBorderWidth: 2,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 1,
-              pointRadius: 4,
-              backgroundColor: "transparent",
-              fill: true,
-              borderWidth: 2,
-              data: [10, 20, 55, 75, 80, 48, 59, 55, 40, 107, 60, 87],
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          legend: {
-            position: "top",
-          },
-          tooltips: {
-            bodySpacing: 4,
-            mode: "nearest",
-            intersect: 0,
-            position: "nearest",
-            xPadding: 10,
-            yPadding: 10,
-            caretPadding: 10,
-          },
-          layout: {
-            padding: { left: 15, right: 15, top: 15, bottom: 15 },
-          },
-        },
-      });
-
-   </script>
  </body>
 </html>

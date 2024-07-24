@@ -15,6 +15,30 @@
       .numbers .card-title{
         font-size: 18px !important;
       }
+      .btn-success{
+        border-radius: 50px !important;
+        box-shadow: 0 2px 10px rgba(49, 206, 54,0.5);
+      }
+
+      .btn-warning{
+        border-radius: 50px !important;
+        box-shadow: 0 2px 10px rgba(255, 173, 70,0.5);
+        color: white !important;
+      }
+
+      .btn-danger{
+        border-radius: 50px !important;
+        box-shadow: 0 2px 10px rgba(242, 89, 97, 0.4);
+      }
+      thead th{
+        color: rgb(69, 63, 155) !important;
+        font-weight: bold;
+      }
+      table{
+        border: 1px solid rgb(144, 144, 144);
+        border-radius: 10px;
+      }
+  
     </style>
     <script>
       WebFont.load({
@@ -79,7 +103,7 @@
                 </span>
               </li>
               <!-- New Menu Items -->
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a href="dashboard.html">
                   <i class="fas fa-home"></i>
                   <p>Dashboard</p>
@@ -104,7 +128,7 @@
                   <p>Data karyawan</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a href="disaster.html">
                   <i class="fas fa-exclamation-triangle"></i>
                   <p>Disaster</p>
@@ -122,27 +146,6 @@
                   <p>Informasi</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#dropdown">
-                  <i class="fas fa-layer-group"></i>
-                  <p>Dropdown</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="dropdown">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="#1">
-                        <span class="sub-item">Menu 1</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#2">
-                        <span class="sub-item">Menu 2</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li> -->
             </ul>
           </div>
         </div>
@@ -228,6 +231,10 @@
                         class="avatar-img rounded-circle"
                       />
                     </div>
+                    <!-- <span class="profile-username">
+                      <span class="op-7">Hi,</span>
+                      <span class="fw-bold">Mochamad Rizki</span>
+                    </span> -->
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
                     <div class="dropdown-user-scroll scrollbar-outer">
@@ -268,51 +275,167 @@
 
         <div class="container">
           <div class="page-inner">
-
-            <div class="row">
-              <div class="col-8">
-                <h3 class="fw-bold mb-3">Hi, Mochamad Rizki</h3>
-              </div>
-              <div class="col-4">
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="card-title">Grafik Karyawan Pertahun</div>
+            <div class="col-md-12">
+              <div class="card card-round">
+                <div class="card-header">
+                  <div class="card-head-row card-tools-still-right">
+                    <div class="card-title">Laporan Keadaan Darurat</div>
+                    <div class="card-tools">
+                      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambah">
+                        <i class="me-1 fas fa-plus-circle"></i>Tambah Data
+                      </button>
                     </div>
-                    <div class="card-body p-0">
-                      <div class="chart-container">
-                        <canvas id="multipleLineChart"></canvas>
-                      </div>
-                    </div>
+                  </div>
                 </div>
-
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="card-title">Grafik Bantuan Pertahun</div>
-                    </div>
-                    <div class="card-body p-0">
-                      <div class="chart-container">
-                        <canvas id="bantuanPerumahan"></canvas>
-                      </div>
-                    </div>
+                <div class="card-body p-2 pt-4">
+                  <div class="table-responsive">
+                    <table id="tableLaporan" style="width: 100%;" class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Tanggal</th>
+                          <th>Deskripsi Kejadian</th>
+                          <th>Status</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Data laporan keadaan darurat akan dimuat di sini -->
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-                  
               </div>
             </div>
-            <!-- table -->
-
-         
-
           </div>
         </div>
       </div>
-
+  
+      <!-- Modal Tambah/Edit -->
+      <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="modalTambahLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTambahLabel">Tambah Laporan Keadaan Darurat</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="formLaporan">
+                <div class="mb-3">
+                  <label for="tanggal" class="form-label">Tanggal</label>
+                  <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                </div>
+                <div class="mb-3">
+                  <label for="deskripsi" class="form-label">Deskripsi Kejadian</label>
+                  <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="status" class="form-label">Status</label>
+                  <select class="form-select" id="status" name="status" required>
+                    <option value="Pending">Pending</option>
+                    <option value="Diproses">Diproses</option>
+                    <option value="Selesai">Selesai</option>
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-   <!--   Core JS Files   -->
-   <script src="assets/js/core/jquery-3.7.1.min.js"></script>
-   <script src="assets/js/core/popper.min.js"></script>
-   <script src="assets/js/core/bootstrap.min.js"></script>
+  
+    <!--   Core JS Files   -->
+    <script src="assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+  
+    <!-- DataTables -->
+    <script src="assets/js/plugin/datatables/datatables.min.js"></script>
+  
+    <script>
+      // Data JSON untuk laporan keadaan darurat (dummy data)
+      let dataLaporan = [
+        { no: 1, tanggal: "2023-07-01", deskripsi: "Atap bocor di ruang komputer", status: "Diproses" },
+        { no: 2, tanggal: "2023-07-05", deskripsi: "Bocor pipa besar di lantai 3", status: "Diproses" },
+        { no: 3, tanggal: "2023-07-10", deskripsi: "Kebocoran gas di area parkir", status: "Selesai" },
+        { no: 4, tanggal: "2023-07-15", deskripsi: "Suhu udara ekstrem di area produksi", status: "Pending" },
+        { no: 5, tanggal: "2023-07-20", deskripsi: "Kerusuhan buruh di ruang training", status: "Selesai" }
+      ];
+  
+      // Fungsi untuk menampilkan data laporan keadaan darurat ke dalam tabel menggunakan DataTables
+      $(document).ready(function() {
+        $('#tableLaporan').DataTable({
+          data: dataLaporan,
+          columns: [
+            { data: 'no' },
+            { data: 'tanggal' },
+            { data: 'deskripsi' },
+            { data: 'status' },
+            {
+              data: null,
+              render: function(data, type, row) {
+                return '<button class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modalTambah" onclick="editLaporan(' + row.no + ')"><i class="me-1 fas fa-edit"></i>Edit</button>' +
+                       '<button class="btn btn-sm btn-danger" onclick="hapusLaporan(' + row.no + ')"><i class="me-1 fas fa-trash-alt"></i>Hapus</button>';
+              }
+            }
+          ],
+        });
+      });
+  
+      // Fungsi untuk menambah atau mengedit laporan keadaan darurat
+      $('#formLaporan').submit(function(event) {
+        event.preventDefault();
+        let no = parseInt($('#modalTambah').attr('data-no'));
+        let tanggal = $('#tanggal').val();
+        let deskripsi = $('#deskripsi').val();
+        let status = $('#status').val();
+        if (no) {
+          // Edit laporan
+          let index = dataLaporan.findIndex(l => l.no === no);
+          dataLaporan[index].tanggal = tanggal;
+          dataLaporan[index].deskripsi = deskripsi;
+          dataLaporan[index].status = status;
+        } else {
+          // Tambah laporan baru
+          let newNo = dataLaporan.length + 1;
+          dataLaporan.push({ no: newNo, tanggal: tanggal, deskripsi: deskripsi, status: status });
+        }
+        $('#tableLaporan').DataTable().clear().rows.add(dataLaporan).draw();
+        $('#modalTambah').modal('hide');
+      });
+  
+      // Fungsi untuk menghapus laporan keadaan darurat
+      function hapusLaporan(no) {
+        let index = dataLaporan.findIndex(l => l.no === no);
+        dataLaporan.splice(index, 1);
+        $('#tableLaporan').DataTable().clear().rows.add(dataLaporan).draw();
+      }
+  
+      // Fungsi untuk mengisi form saat mengedit laporan
+      function editLaporan(no) {
+        let index = dataLaporan.findIndex(l => l.no === no);
+        $('#modalTambah').attr('data-no', no);
+        $('#tanggal').val(dataLaporan[index].tanggal);
+        $('#deskripsi').val(dataLaporan[index].deskripsi);
+        $('#status').val(dataLaporan[index].status);
+        setModalMode('edit');
+      }
+  
+      // Fungsi untuk mengatur modal sesuai dengan mode tambah atau edit
+      function setModalMode(mode) {
+        if (mode === 'edit') {
+          $('#modalTambahLabel').text('Edit Laporan Keadaan Darurat');
+          $('.modal-footer .btn-primary').text('Simpan Perubahan');
+        } else {
+          $('#modalTambahLabel').text('Tambah Laporan Keadaan Darurat');
+          $('.modal-footer .btn-primary').text('Simpan');
+        }
+      }
+    </script>
 
    <!-- jQuery Scrollbar -->
    <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
@@ -345,158 +468,5 @@
    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
    <script src="assets/js/setting-demo.js"></script>
    <script src="assets/js/demo.js"></script>
-   <script>
-     $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-       type: "line",
-       height: "70",
-       width: "100%",
-       lineWidth: "2",
-       lineColor: "#177dff",
-       fillColor: "rgba(23, 125, 255, 0.14)",
-     });
-
-     $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-       type: "line",
-       height: "70",
-       width: "100%",
-       lineWidth: "2",
-       lineColor: "#f3545d",
-       fillColor: "rgba(243, 84, 93, .14)",
-     });
-
-     $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-       type: "line",
-       height: "70",
-       width: "100%",
-       lineWidth: "2",
-       lineColor: "#ffa534",
-       fillColor: "rgba(255, 165, 52, .14)",
-     });
-
-     var myMultipleLineChart = new Chart(multipleLineChart, {
-        type: "line",
-        data: {
-          labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          datasets: [
-            {
-              label: "Freshgradutate",
-              borderColor: "#1d7af3",
-              pointBorderColor: "#FFF",
-              pointBackgroundColor: "#1d7af3",
-              pointBorderWidth: 2,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 1,
-              pointRadius: 4,
-              backgroundColor: "transparent",
-              fill: true,
-              borderWidth: 2,
-              data: [30, 45, 45, 68, 69, 90, 100, 158, 177, 200, 245, 256],
-            },
-            {
-              label: "Karyawan Tetap",
-              borderColor: "#59d05d",
-              pointBorderColor: "#FFF",
-              pointBackgroundColor: "#59d05d",
-              pointBorderWidth: 2,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 1,
-              pointRadius: 4,
-              backgroundColor: "transparent",
-              fill: true,
-              borderWidth: 2,
-              data: [10, 20, 55, 75, 80, 48, 59, 55, 23, 107, 60, 87],
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          legend: {
-            position: "top",
-          },
-          tooltips: {
-            bodySpacing: 4,
-            mode: "nearest",
-            intersect: 0,
-            position: "nearest",
-            xPadding: 10,
-            yPadding: 10,
-            caretPadding: 10,
-          },
-          layout: {
-            padding: { left: 15, right: 15, top: 15, bottom: 15 },
-          },
-        },
-      });
-
-      var myBantuanPerumahan = new Chart(bantuanPerumahan, {
-        type: "line",
-        data: {
-          labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          datasets: [
-            {
-              label: "Bantuan disalurkan",
-              borderColor: "#59d05d",
-              pointBorderColor: "#FFF",
-              pointBackgroundColor: "#59d05d",
-              pointBorderWidth: 2,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 1,
-              pointRadius: 4,
-              backgroundColor: "transparent",
-              fill: true,
-              borderWidth: 2,
-              data: [10, 20, 55, 75, 80, 48, 59, 55, 40, 107, 60, 87],
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          legend: {
-            position: "top",
-          },
-          tooltips: {
-            bodySpacing: 4,
-            mode: "nearest",
-            intersect: 0,
-            position: "nearest",
-            xPadding: 10,
-            yPadding: 10,
-            caretPadding: 10,
-          },
-          layout: {
-            padding: { left: 15, right: 15, top: 15, bottom: 15 },
-          },
-        },
-      });
-
-   </script>
  </body>
 </html>

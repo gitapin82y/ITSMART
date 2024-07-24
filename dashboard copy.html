@@ -80,19 +80,19 @@
               </li>
               <!-- New Menu Items -->
               <li class="nav-item active">
-                <a href="dashboard.html">
+                <a href="#">
                   <i class="fas fa-home"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="freshgraduate.html">
+                <a href="#">
                   <i class="fas fa-graduation-cap"></i>
                   <p>Freshgraduate</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="bantuan-perumahan.html">
+                <a href="#">
                   <i class="fas fa-home"></i>
                   <p>Bantuan perumahan</p>
                 </a>
@@ -105,24 +105,24 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="disaster.html">
+                <a href="#">
                   <i class="fas fa-exclamation-triangle"></i>
                   <p>Disaster</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="rehire.html">
+                <a href="#">
                   <i class="fas fa-redo-alt"></i>
                   <p>Rehire</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="informasi.html">
+                <a href="#">
                   <i class="fas fa-info-circle"></i>
                   <p>Informasi</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
+              <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#dropdown">
                   <i class="fas fa-layer-group"></i>
                   <p>Dropdown</p>
@@ -142,7 +142,7 @@
                     </li>
                   </ul>
                 </div>
-              </li> -->
+              </li>
             </ul>
           </div>
         </div>
@@ -228,6 +228,10 @@
                         class="avatar-img rounded-circle"
                       />
                     </div>
+                    <span class="profile-username">
+                      <span class="op-7">Hi,</span>
+                      <span class="fw-bold">Mochamad Rizki</span>
+                    </span>
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
                     <div class="dropdown-user-scroll scrollbar-outer">
@@ -268,41 +272,156 @@
 
         <div class="container">
           <div class="page-inner">
-
-            <div class="row">
-              <div class="col-8">
+            <div
+              class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
+            >
+              <div>
                 <h3 class="fw-bold mb-3">Hi, Mochamad Rizki</h3>
               </div>
-              <div class="col-4">
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="card-title">Grafik Karyawan Pertahun</div>
-                    </div>
-                    <div class="card-body p-0">
-                      <div class="chart-container">
-                        <canvas id="multipleLineChart"></canvas>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-md-4">
+                <div class="card card-stats card-round">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-primary bubble-shadow-small"
+                        >
+                          <i class="fas fa-users"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <p class="card-category">Jumlah karyawan reg 2</p>
+                          <h4 class="card-title">1225</h4>
+                        </div>
                       </div>
                     </div>
+                  </div>
                 </div>
-
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="card-title">Grafik Bantuan Pertahun</div>
-                    </div>
-                    <div class="card-body p-0">
-                      <div class="chart-container">
-                        <canvas id="bantuanPerumahan"></canvas>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <div class="card card-stats card-round">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-info bubble-shadow-small"
+                        >
+                          <i class="fas fa-graduation-cap"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <p class="card-category">Freshgraduate</p>
+                          <h4 class="card-title">540</h4>
+                        </div>
                       </div>
                     </div>
+                  </div>
                 </div>
-                  
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <div class="card card-stats card-round">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-success bubble-shadow-small"
+                        >
+                          <i class="fas fa-home"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <p class="card-category">Total Bantuan Rumah</p>
+                          <h4 class="card-title">1105</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- table -->
 
-         
+            <div class="row">
+              <div class="col-12 col-md-8">
+                <div class="card card-round">
+                  <div class="card-header">
+                    <div class="card-head-row card-tools-still-right">
+                      <div class="card-title">Data Karyawan Terbaru</div>
+                      <div class="card-tools">
+                        <a href="karyawan.html" class="btn btn-success">Selengkapnya</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <!-- Projects table -->
+                      <table class="table align-items-center mb-0">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Nama Lengkap</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Posisi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Agus Setiawan</td>
+                            <td>agus.setiawan@gmail.com</td>
+                            <td>Manager</td>
+                          </tr>
+                          <tr>
+                            <td>Budi Santoso</td>
+                            <td>budi.santoso@gmail.com</td>
+                            <td>Staff</td>
+                          </tr>
+                          <tr>
+                            <td>Citra Wijaya</td>
+                            <td>citra.wijaya@gmail.com</td>
+                            <td>Programmer</td>
+                          </tr>
+                          <tr>
+                            <td>Dewi Anggraeni</td>
+                            <td>dewi.anggraeni@gmail.com</td>
+                            <td>Designer</td>
+                          </tr>
+                          <tr>
+                            <td>Edo Pratama</td>
+                            <td>edo.pratama@gmail.com</td>
+                            <td>Tester</td>
+                          </tr>
+                          <tr>
+                            <td>Fita Amelia</td>
+                            <td>fita.amelia@gmail.com</td>
+                            <td>Analyst</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Presentase Karyawan</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart-container">
+                        <canvas
+                          id="pieChart"
+                          style="width: 50%; height: 50%"
+                        ></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
           </div>
         </div>
@@ -373,129 +492,46 @@
        fillColor: "rgba(255, 165, 52, .14)",
      });
 
-     var myMultipleLineChart = new Chart(multipleLineChart, {
-        type: "line",
-        data: {
-          labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          datasets: [
-            {
-              label: "Freshgradutate",
-              borderColor: "#1d7af3",
-              pointBorderColor: "#FFF",
-              pointBackgroundColor: "#1d7af3",
-              pointBorderWidth: 2,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 1,
-              pointRadius: 4,
-              backgroundColor: "transparent",
-              fill: true,
-              borderWidth: 2,
-              data: [30, 45, 45, 68, 69, 90, 100, 158, 177, 200, 245, 256],
-            },
-            {
-              label: "Karyawan Tetap",
-              borderColor: "#59d05d",
-              pointBorderColor: "#FFF",
-              pointBackgroundColor: "#59d05d",
-              pointBorderWidth: 2,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 1,
-              pointRadius: 4,
-              backgroundColor: "transparent",
-              fill: true,
-              borderWidth: 2,
-              data: [10, 20, 55, 75, 80, 48, 59, 55, 23, 107, 60, 87],
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          legend: {
-            position: "top",
-          },
-          tooltips: {
-            bodySpacing: 4,
-            mode: "nearest",
-            intersect: 0,
-            position: "nearest",
-            xPadding: 10,
-            yPadding: 10,
-            caretPadding: 10,
-          },
-          layout: {
-            padding: { left: 15, right: 15, top: 15, bottom: 15 },
-          },
-        },
-      });
-
-      var myBantuanPerumahan = new Chart(bantuanPerumahan, {
-        type: "line",
-        data: {
-          labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          datasets: [
-            {
-              label: "Bantuan disalurkan",
-              borderColor: "#59d05d",
-              pointBorderColor: "#FFF",
-              pointBackgroundColor: "#59d05d",
-              pointBorderWidth: 2,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 1,
-              pointRadius: 4,
-              backgroundColor: "transparent",
-              fill: true,
-              borderWidth: 2,
-              data: [10, 20, 55, 75, 80, 48, 59, 55, 40, 107, 60, 87],
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          legend: {
-            position: "top",
-          },
-          tooltips: {
-            bodySpacing: 4,
-            mode: "nearest",
-            intersect: 0,
-            position: "nearest",
-            xPadding: 10,
-            yPadding: 10,
-            caretPadding: 10,
-          },
-          layout: {
-            padding: { left: 15, right: 15, top: 15, bottom: 15 },
-          },
-        },
-      });
+     var myPieChart = new Chart(pieChart, {
+  type: "pie",
+  data: {
+    datasets: [
+      {
+        data: [30, 20], // Menggunakan data untuk laki-laki dan perempuan
+        backgroundColor: ["#1d7af3", "#FF00FF"], // Warna biru untuk laki-laki dan pink untuk perempuan
+        borderWidth: 0,
+      },
+    ],
+    labels: ["Laki-laki", "Perempuan"], // Label untuk masing-masing data
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      position: "bottom",
+      labels: {
+        fontColor: "rgb(154, 154, 154)",
+        fontSize: 11,
+        usePointStyle: true,
+        padding: 20,
+      },
+    },
+    pieceLabel: {
+      render: "percentage",
+      fontColor: "white",
+      fontSize: 14,
+    },
+    tooltips: false,
+    layout: {
+      padding: {
+        left: 20,
+        right: 20,
+        top: 20,
+        bottom: 20,
+      },
+    },
+  },
+});
 
    </script>
  </body>
