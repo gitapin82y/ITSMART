@@ -473,7 +473,7 @@
           { data: 'nama' },
           { data: 'email' },
           { 
-            data: 'posisi',
+            data: 'posisi'
           },
           { data: 'status'},
           {
@@ -507,7 +507,7 @@
       } else {
         // Tambah karyawan (ID baru)
         let newId = dataKaryawan.length + 1;
-        dataKaryawan.push({ id: newId, nama: nama, email: email, posisi: posisi });
+        dataKaryawan.push({ id: newId, nama: nama, email: email, posisi: posisi, status: status });
       }
       $('#modalTambah').modal('hide');
       refreshTable();
